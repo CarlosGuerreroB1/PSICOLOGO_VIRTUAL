@@ -1,0 +1,180 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'views/css/resultado.css' %}">
+<div class="page-container">
+
+
+<a href="{% url 'psicoia:chat' %}" class="back-link">
+    ← Volver al chat
+</a>
+
+
+
+<div class="card">
+
+<h1>
+    🕒 Historial
+</h1>
+
+
+<p>
+    Tus conversaciones guardadas
+</p>
+
+
+
+{% if sesiones %}
+
+
+
+<div class="history-list">
+
+
+{% for sesion in sesiones %}
+
+
+<div class="history-card">
+
+
+<div class="history-header">
+
+
+<span>
+
+{% if sesion.estado == 'completada' %}
+
+✅
+
+{% else %}
+
+❌
+
+{% endif %}
+
+</span>
+
+
+<h3>
+{{ sesion.fecha_inicio|date:"d/m/Y · H:i" }}
+</h3>
+
+
+</div>
+
+
+
+<p>
+
+{{ sesion.mensajes.count }}
+mensaje{{ sesion.mensajes.count|pluralize }}
+
+
+{% if sesion.tokens_usados %}
+
+· {{ sesion.tokens_usados }} tokens
+
+{% endif %}
+
+
+</p>
+
+
+
+
+{% if sesion.protocolo_crisis_activo %}
+
+<div class="warning">
+⚠️ Protocolo de crisis activo
+</div>
+
+{% endif %}
+
+
+
+
+
+<div class="diagnostic">
+
+
+{% if sesion.diagnostico %}
+
+
+<strong>
+{{ sesion.diagnostico.get_nivel_global_display }}
+</strong>
+
+
+<p>
+
+D:
+{{ sesion.diagnostico.puntuacion_D }}
+
+&nbsp;
+
+A:
+{{ sesion.diagnostico.puntuacion_A }}
+
+&nbsp;
+
+E:
+{{ sesion.diagnostico.puntuacion_S }}
+
+</p>
+
+
+{% else %}
+
+
+<span>
+Sin diagnóstico
+</span>
+
+
+{% endif %}
+
+
+</div>
+
+
+</div>
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+{% else %}
+
+
+<div class="empty-state">
+
+
+<div class="emoji">
+💬
+</div>
+
+
+<h2>
+No tienes conversaciones guardadas aún.
+</h2>
+
+
+<a href="{% url 'psicoia:chat' %}">
+Iniciar una conversación
+</a>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+</div>
+
+</div>

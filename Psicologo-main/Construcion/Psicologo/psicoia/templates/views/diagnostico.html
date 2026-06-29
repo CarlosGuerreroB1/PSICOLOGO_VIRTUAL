@@ -1,0 +1,175 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'views/css/resultado.css' %}">
+<div class="page-container">
+
+    <a href="{% url 'psicoia:chat' %}" class="back-link">
+        ← Volver al chat
+    </a>
+
+    <div class="card">
+
+        <h1>📊 Resultados DASS-21</h1>
+
+        <p class="date">
+            Sesión del {{ sesion.fecha_inicio|date:"d/m/Y H:i" }}
+        </p>
+
+
+        {% if diagnostico %}
+
+        <div class="global-result">
+            <h2>
+                Nivel global:
+                {{ diagnostico.get_nivel_global_display }}
+            </h2>
+
+            <span>
+                Confianza:
+                {{ diagnostico.confianza_global|floatformat:0 }}%
+            </span>
+        </div>
+
+
+        <div class="scores-container">
+
+
+            <div class="score-card depression">
+                <div class="emoji">😔</div>
+
+                <h3>Depresión</h3>
+
+                <strong>
+                    {{ diagnostico.puntuacion_D }} pts
+                </strong>
+
+                <p>
+                    {{ diagnostico.get_nivel_D_display }}
+                </p>
+            </div>
+
+
+
+            <div class="score-card anxiety">
+                <div class="emoji">😰</div>
+
+                <h3>Ansiedad</h3>
+
+                <strong>
+                    {{ diagnostico.puntuacion_A }} pts
+                </strong>
+
+                <p>
+                    {{ diagnostico.get_nivel_A_display }}
+                </p>
+            </div>
+
+
+
+            <div class="score-card stress">
+                <div class="emoji">😤</div>
+
+                <h3>Estrés</h3>
+
+                <strong>
+                    {{ diagnostico.puntuacion_S }} pts
+                </strong>
+
+                <p>
+                    {{ diagnostico.get_nivel_S_display }}
+                </p>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="chart-card">
+
+            <div>
+                <h3>Depresión</h3>
+                <span>
+                    {{ diagnostico.puntuacion_D }}/42
+                </span>
+            </div>
+
+
+            <div>
+                <h3>Ansiedad</h3>
+                <span>
+                    {{ diagnostico.puntuacion_A }}/42
+                </span>
+            </div>
+
+
+            <div>
+                <h3>Estrés</h3>
+                <span>
+                    {{ diagnostico.puntuacion_S }}/42
+                </span>
+            </div>
+
+        </div>
+
+
+
+        <section class="recommendations">
+
+            <h2>
+                Recomendaciones
+            </h2>
+
+
+            {% for rec in diagnostico.recomendaciones.all %}
+
+            <div class="recommendation">
+
+                <h3>
+                    {{ rec.get_tipo_display }}
+                </h3>
+
+                <p>
+                    {{ rec.descripcion }}
+                </p>
+
+            </div>
+
+
+            {% empty %}
+
+            <p>
+                No hay recomendaciones registradas aún.
+            </p>
+
+            {% endfor %}
+
+        </section>
+
+
+        {% else %}
+
+
+        <div class="empty-state">
+
+            <h2>
+                Aún no tienes un diagnóstico
+            </h2>
+
+            <p>
+                Completa el cuestionario DASS-21 en el chat.
+            </p>
+
+
+            <a href="{% url 'psicoia:chat' %}">
+                Ir al chat
+            </a>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+</div>

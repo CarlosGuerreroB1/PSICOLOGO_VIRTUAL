@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Empathy AI – Registrate</title>
+    <link rel="stylesheet" href="{% static '/account/css/registro.css' %}">
+</head>
+<body> <title> Empathy AI – Registrate</title>
+
+<form class="auth-form" method="post" id="registro-form">
+    {% csrf_token %}
+
+    <!-- Usuario -->
+    <div class="field">
+        <label for="{{ form.username.id_for_label }}">
+            {{ form.username.label }}
+        </label>
+        <div class="field__wrap">
+            {{ form.username }}
+        </div>
+        {% if form.username.errors %}
+            <small class="field-error">
+                {{ form.username.errors.0 }}
+            </small>
+        {% endif %}
+    </div>
+
+    <!-- Email -->
+    <div class="field">
+        <label for="{{ form.email.id_for_label }}">
+            {{ form.email.label }}
+        </label>
+        <div class="field__wrap">
+            {{ form.email }}
+        </div>
+        {% if form.email.errors %}
+            <small class="field-error">
+                {{ form.email.errors.0 }}
+            </small>
+        {% endif %}
+    </div>
+
+    <!-- Contraseña -->
+    <div class="field">
+        <label for="{{ form.password1.id_for_label }}">
+            {{ form.password1.label }}
+        </label>
+        <div class="field__wrap">
+            {{ form.password1 }}
+        </div>
+        {% if form.password1.errors %}
+            <small class="field-error">
+                {{ form.password1.errors.0 }}
+            </small>
+        {% endif %}
+    </div>
+
+    <!-- Confirmar contraseña -->
+    <div class="field">
+        <label for="{{ form.password2.id_for_label }}">
+            {{ form.password2.label }}
+        </label>
+        <div class="field__wrap">
+            {{ form.password2 }}
+        </div>
+        {% if form.password2.errors %}
+            <small class="field-error">
+                {{ form.password2.errors.0 }}
+            </small>
+        {% endif %}
+    </div>
+
+    <!-- Consentimiento -->
+    <div class="field field-checkbox">
+        <label class="checkbox-label">
+            {{ form.consentimiento_privacidad }}
+            <span>{{ form.consentimiento_privacidad.label }}</span>
+        </label>
+
+        {% if form.consentimiento_privacidad.errors %}
+            <small class="field-error">
+                {{ form.consentimiento_privacidad.errors.0 }}
+            </small>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="auth-submit" id="submit-btn">
+        Crear cuenta
+    </button>
+</form>
+<script src="{% static 'account/js/registro.js' %}"></script>
+</body>

@@ -1,0 +1,213 @@
+/* ═══════════════════════════════════════════════
+   PROFILE MENU
+═══════════════════════════════════════════════ */
+
+#profile-wrapper{
+    position:relative;
+}
+
+
+/* Botón perfil */
+.profile-btn {
+    width:36px;
+    height:36px;
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--sky),
+        var(--purple)
+    );
+
+    border:none;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 2px 8px rgba(124,58,237,.35);
+
+    flex-shrink:0;
+}
+
+
+.profile-btn svg{
+
+    width:18px;
+    height:18px;
+
+    stroke:white;
+    fill:none;
+    stroke-width:2;
+
+}
+
+
+
+/* Caja del menú */
+
+.profile-menu{
+
+    position:absolute;
+
+    top:45px;
+
+    right:0;
+
+
+    width:220px;
+
+
+    background:var(--surface);
+
+
+    border-radius:16px;
+
+
+    padding:8px;
+
+
+    border:1px solid var(--border);
+
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+
+
+    z-index:9999;
+
+
+    opacity:0;
+
+    visibility:hidden;
+
+
+    transform:
+    translateY(-10px)
+    scale(.95);
+
+
+    transition:
+    opacity .2s ease,
+    transform .2s ease;
+
+}
+
+
+
+/* Cuando se abre */
+
+.profile-menu.open{
+
+    opacity:1;
+
+    visibility:visible;
+
+
+    transform:
+    translateY(0)
+    scale(1);
+
+}
+
+
+
+/* enlaces del menú */
+
+.profile-menu .menu-item,
+.profile-menu button{
+
+
+    width:100%;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    padding:12px 14px;
+
+
+    background:transparent;
+
+
+    border:none;
+
+
+    border-radius:12px;
+
+
+    color:var(--text);
+
+
+    text-decoration:none;
+
+
+    font-size:.9rem;
+
+
+    cursor:pointer;
+
+
+    transition:.2s;
+
+}
+
+
+
+.profile-menu .menu-item:hover,
+.profile-menu button:hover{
+
+    background:#f8fafc;
+
+}
+
+
+
+/* Iconos */
+
+.profile-menu svg{
+
+    width:20px;
+
+    height:20px;
+
+    stroke:var(--text-soft);
+
+    fill:none;
+
+    stroke-width:2;
+
+}
+
+
+
+/* Formulario logout */
+
+.profile-menu form{
+
+    width:100%;
+
+    margin:0;
+
+}
+
+
+
+/* Separador */
+
+.profile-menu hr{
+
+    border:none;
+
+    border-top:1px solid var(--border);
+
+    margin:6px 0;
+
+}

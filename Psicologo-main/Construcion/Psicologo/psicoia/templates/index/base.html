@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Empathy AI</title>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+</head>
+<body>
+<div class="auth-card" style="text-align:center;">
+  <div class="auth-logo">
+    <div class="auth-logo__circle">
+
+    </div>
+  </div>
+  <div class="auth-heading">
+    <h1>Empathy AI</h1>
+    <p>Tu compañero de apoyo emocional</p>
+  </div>
+  <a href="{% url 'psicoia:login' %}" class="auth-submit" style="display:block;text-decoration:none;margin-bottom:.75rem;">Iniciar sesión</a>
+  <a href="{% url 'psicoia:registro' %}" style="color:#7c3aed;font-size:.875rem;font-weight:500;">¿No tienes cuenta? Regístrate</a>
+  <p class="auth-footer" style="margin-top:1.5rem;">Un espacio seguro para compartir tus emociones</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empathy AI – Iniciar sesión</title>
+    <link rel="stylesheet" href="{% static '/account/css/login.css' %}">
+</head>
+<body>
+
+<div class="login-page">
+    <div class="login-card">
+
+        <!-- Título -->
+        <div class="login-title">
+            <h1>Empathy AI</h1>
+            <p>Tu compañero de apoyo emocional</p>
+        </div>
+
+        
+
+        <!-- Mensajes -->
+      
+        <!-- Formulario -->
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Usuario -->
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">
+                    {{ form.username.label }}
+                </label>
+                <div class="input-wrapper">
+                     <i class="fa-regular fa-user"></i>
+                    {{ form.username }}
+                </div>
+
+                {% if form.username.errors %}
+                    <small class="text-danger">
+                        {{ form.username.errors.0 }}
+                    </small>
+                {% endif %}
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">
+                    {{ form.password.label }}
+                </label>
+                <div class="input-wrapper">
+                     <i class="fa-solid fa-lock"></i>
+                    {{ form.password }}
+                </div>
+
+                {% if form.password.errors %}
+                    <small class="text-danger">
+                        {{ form.password.errors.0 }}
+                    </small>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Iniciar sesión
+            </button>
+        </form>
+
+        <div class="login-toggle">
+            <a href="{% url 'psicoia:registro' %}">
+                ¿No tienes cuenta? Regístrate
+            </a>
+        </div>
+
+        <p class="login-footer">
+            Un espacio seguro para compartir tus emociones
+        </p>
+
+    </div>
+</div>
+<script src="{% static 'account/js/login.js' %}"></script>
+</body>
+</html>
